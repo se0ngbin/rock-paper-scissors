@@ -2,6 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url(./images/bg.jpg);
 }
 
 img {
@@ -25,18 +26,25 @@ button {
     margin-top: 200px;
     display: flex;
     align-self: stretch;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 h1 {
     color: darkmagenta;
+    font-family: 'Caveat', cursive;
     font-size: 40px;
 }
 
+h2 {
+    color: rgb(53, 0, 139);
+    font-size: 32px;
+    font-family: 'Khand', sans-serif;
+}
+
 #restart {
-    margin-top: 50px;
+    margin: 0;
     font-size: 30px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Caveat', cursive;
     background-color: rgb(225, 127, 255);
     width: 200px;
     height: auto;
@@ -44,7 +52,7 @@ h1 {
 
 .computer.buttons {
     position: absolute;
-    top: 80vh;
+    top: 81.5vh;
 }
 
 .computer.buttons button{
@@ -55,8 +63,8 @@ h1 {
 .clicked {
     border-radius: 25px;
     transform: scale(1.1);
-    border-color: #00ffea;
-    box-shadow: 0 0 1rem #00ffea;
+    border-color: #0400ff;
+    box-shadow: 0 0 1rem #0400ff;
 }
 
 .computer.buttons .clicked {
