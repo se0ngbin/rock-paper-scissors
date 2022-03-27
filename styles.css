@@ -17,6 +17,7 @@ button {
 .buttons {
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
 
@@ -49,4 +50,16 @@ h1 {
 .computer.buttons button{
     pointer-events: none;
     background-color: rgb(247, 199, 202);
+}
+
+.clicked {
+    border-radius: 25px;
+    transform: scale(1.1);
+    border-color: #00ffea;
+    box-shadow: 0 0 1rem #00ffea;
+}
+
+.computer.buttons .clicked {
+    border-color: #ff3c00d7;
+    box-shadow: 0 0 1rem #ff3c00d7;
 }

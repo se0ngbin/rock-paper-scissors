@@ -1,8 +1,6 @@
 const options = ["rock", "paper", "scissors"];
 let scorePlayer = 0;
 let scoreComputer = 0;
-let computerSelection;
-let playerSelection;
 
 
 function endGame(playerWon) {
@@ -19,7 +17,8 @@ function endGame(playerWon) {
 }
 
 function playRound(playerSelection) {
-    computerSelection = computerPlay();
+    let computerSelection = computerPlay();
+
     if (playerSelection === computerSelection) {
         console.log("Tie!");
     }
@@ -52,8 +51,16 @@ function restartGame() {
 }
 
 function computerPlay() {
-    let index = getRandomInt(3);
-    return options[index];
+    let result = options[getRandomInt(3)];
+    let x = document.querySelector(".computer #" + result);
+    console.log(".computer #" + result);
+
+    x.classList.toggle("clicked");
+    setTimeout(function () {
+        x.classList.toggle("clicked");
+    }, 1000);
+
+    return result;  
 }
 
 function getRandomInt(number) {
@@ -62,12 +69,16 @@ function getRandomInt(number) {
 
 let btns = document.querySelectorAll("button");
 btns.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
         if (scoreComputer >= 5 || scorePlayer >= 5) return;
 
-        playerSelection = button.id;
 
-        playRound(playerSelection);
+        e.target.classList.toggle("clicked");
+        setTimeout(function () {
+            e.target.classList.toggle("clicked");
+        }, 1000);
+        
+        playRound(button.id);
 
         if (scoreComputer === 5 || scorePlayer === 5) {
             endGame(scorePlayer > scoreComputer);
