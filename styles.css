@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    width: 128px;
+    height: 128px;
+}
+
+button {
+    border-radius: 25px;
+    background-color: rgb(199, 224, 247);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+
+.score {
+    margin-top: 200px;
+    display: flex;
+    align-self: stretch;
+    justify-content: space-around;
+}
+
+h1 {
+    color: darkmagenta;
+    font-size: 40px;
+}
+
+#restart {
+    margin-top: 50px;
+    font-size: 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(225, 127, 255);
+    width: 200px;
+    height: auto;
+}
+
+.computer.buttons {
+    position: absolute;
+    top: 80vh;
+}
+
+.computer.buttons button{
+    pointer-events: none;
+    background-color: rgb(247, 199, 202);
+}

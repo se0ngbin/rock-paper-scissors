@@ -1,56 +1,54 @@
 const options = ["rock", "paper", "scissors"];
+let scorePlayer = 0;
+let scoreComputer = 0;
+let computerSelection;
+let playerSelection;
 
-function game() {
-    let scorePlayer = 0;
-    let scoreComputer = 0;
 
-    for (let i = 0; i < 5; i++) {
-        const computerSelection = computerPlay();
-        const playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+function endGame(playerWon) {
+    var scoreBoard = document.createElement('h1');
+    scoreBoard.textContent = playerWon ? "YOU WIN!" : "YOU LOSE!";
+    document.querySelector('body').appendChild(scoreBoard);
 
-        let result = playRound(playerSelection, computerSelection);
+    var restart = document.createElement('button');
+    restart.setAttribute("id", "restart");
+    restart.textContent = "Play Again";
+    document.querySelector('body').appendChild(restart);
 
-        switch (result) {
-            case 0:
-                scorePlayer++;
-                scoreComputer++;
-                break;
-            case 1:
-                scorePlayer++;
-                break;
-            case -1:
-                scoreComputer++;
-                break;
-            default:
-                break;
-        }
-    }
-
-    let score = `You: ${scorePlayer} Computer: ${scoreComputer}`;
-    if (scorePlayer === scoreComputer) {
-        console.log(score + " ------ Tie");
-    }
-    else {
-        console.log(scoreComputer < scorePlayer ? score + " ------ You Win" : score + " ------ You Lose");
-    }
+    document.getElementById("restart").addEventListener('click', restartGame);
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    computerSelection = computerPlay();
     if (playerSelection === computerSelection) {
         console.log("Tie!");
-        return 0;
     }
     else if (playerSelection === options[0] && computerSelection === options[1]
         || playerSelection === options[1] && computerSelection === options[2]
         || playerSelection === options[2] && computerSelection === options[0]) {
         console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-        return -1;
+        scoreComputer++;
+        updateScore();
     }
     else {
         console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-        return 1
+        scorePlayer++;
+        updateScore();
     }
+}
 
+function updateScore() {
+    document.getElementById("computerScore").textContent = scoreComputer;
+    document.getElementById("playerScore").textContent = scorePlayer;
+}
+
+function restartGame() {
+    document.querySelector("h1").remove();
+    console.log(document.querySelector("h1"));
+    document.querySelector("#restart").remove();
+    scorePlayer = 0;
+    scoreComputer = 0;
+    updateScore();
 }
 
 function computerPlay() {
@@ -62,4 +60,17 @@ function getRandomInt(number) {
     return Math.floor(Math.random() * number);
 }
 
-game();
+let btns = document.querySelectorAll("button");
+btns.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (scoreComputer >= 5 || scorePlayer >= 5) return;
+
+        playerSelection = button.id;
+
+        playRound(playerSelection);
+
+        if (scoreComputer === 5 || scorePlayer === 5) {
+            endGame(scorePlayer > scoreComputer);
+        }
+    });
+});
