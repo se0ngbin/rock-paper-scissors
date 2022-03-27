@@ -1,6 +1,7 @@
 const options = ["rock", "paper", "scissors"];
 let scorePlayer = 0;
 let scoreComputer = 0;
+let output = "";
 
 
 function endGame(playerWon) {
@@ -20,17 +21,18 @@ function playRound(playerSelection) {
     let computerSelection = computerPlay();
 
     if (playerSelection === computerSelection) {
-        console.log("Tie!");
+        output = "Tie!";
+        updateScore();
     }
     else if (playerSelection === options[0] && computerSelection === options[1]
         || playerSelection === options[1] && computerSelection === options[2]
         || playerSelection === options[2] && computerSelection === options[0]) {
-        console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+        output = `You Lose! ${computerSelection} beats ${playerSelection}`;
         scoreComputer++;
         updateScore();
     }
     else {
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+        output = `You Win! ${playerSelection} beats ${computerSelection}`;
         scorePlayer++;
         updateScore();
     }
@@ -39,6 +41,7 @@ function playRound(playerSelection) {
 function updateScore() {
     document.getElementById("computerScore").textContent = scoreComputer;
     document.getElementById("playerScore").textContent = scorePlayer;
+    document.querySelector(".message").textContent = output;
 }
 
 function restartGame() {
